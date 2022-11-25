@@ -1,0 +1,9 @@
+
+ /* for mobile devices */
+ @media only screen and (max-width: 600px) {
+    .responsive-font{
+        font-size: 12px;
+        margin-left: 10%;
+        line-height: 1;
+    }
+  }
