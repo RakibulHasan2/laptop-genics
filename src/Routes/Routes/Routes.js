@@ -14,6 +14,7 @@ import AddProduct from "../../Pages/Dashboard/AddProduct/AddProduct";
 import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
+import Welcome from "../../Pages/Dashboard/Welcome/Welcome";
 
 
 const router = createBrowserRouter([
@@ -56,6 +57,10 @@ const router = createBrowserRouter([
         children: [
             {
                 path:'/dashboard',
+                element: <Welcome></Welcome>
+            },
+            {
+                path:'/dashboard/myOrders',
                 element: <MyOrders></MyOrders>
             },
             {
