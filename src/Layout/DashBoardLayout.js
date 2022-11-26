@@ -22,9 +22,7 @@ const DashBoardLayout = () => {
         }
     })
     const role = userRole[0]?.role
-    console.log(role)
-
-
+    // console.log(role)
     return (
         <div>
             <Navbar></Navbar>
