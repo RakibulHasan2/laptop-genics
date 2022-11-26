@@ -49,18 +49,18 @@ const MyOrders = () => {
                                 <td>{order.resalePrice}</td>
                                 <td>
                                     {
-                                        order.resalePrice && <Link to={`/dashboard/payment/${order._id}`}>
-                                            <button className=' btn btn-primary btn-sm'>
+                                        order.resalePrice && !order?.paid && <Link to={`/dashboard/payment/${order._id}`}>
+                                            <button className=' btn btn-primary'>
                                                 Pay
                                             </button>
                                         </Link>
 
                                     }
-                                    {/* {
-                                        order.resalePrice && <button className=' btn btn-success btn-sm'>
+                                    {
+                                        order.resalePrice && order?.paid && <button className=' btn bg-green-700'>
                                             Paid
                                         </button>
-                                    } */}
+                                    }
                                 </td>
                             </tr>)
                         }

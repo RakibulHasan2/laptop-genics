@@ -15,6 +15,7 @@ import MyProducts from "../../Pages/Dashboard/MyProducts/MyProducts";
 import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import Welcome from "../../Pages/Dashboard/Welcome/Welcome";
+import Payment from "../../Pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
     {
@@ -77,6 +78,11 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/allSellers',
                 element: <AllSellers></AllSellers>
+            },
+            {
+                path:'/dashboard/payment/:id',
+                element: <Payment></Payment>,
+                loader: ({params}) => fetch(`http://localhost:5000/bookedLaptop/${params.id}`)
             },
           
           

@@ -14,7 +14,7 @@ const AddProduct = () => {
         const fromData = new FormData();
         fromData.append('image', image);
         const url = `https://api.imgbb.com/1/upload?expiration=600&key=${imageHosKey} `
-        console.log(url)
+        // console.log(url)
         fetch(url, {
             method: 'POST',
             body: fromData
