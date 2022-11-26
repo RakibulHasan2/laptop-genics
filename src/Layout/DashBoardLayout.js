@@ -31,40 +31,51 @@ const DashBoardLayout = () => {
                 <div className="drawer-content">
                     <Outlet></Outlet>
                 </div>
-                <div className="drawer-side font-bold">
-                    <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
-                    <ul className="menu p-4 w-80  text-white">
-                        {
-                        role === "admin"?
-                            <>
-                                <p className='text-2xl font-bold text-green-900 mb-10 ml-3'>Admin Panel</p>
-                                <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/allSellers">All Seller</Link></li>
-                                <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/allBuyers">All Buyers</Link></li> 
-                            </>
-                            :
-                            <></>
-                        }
-                        {
-                        role === 'seller' ?
-                            <>
-                                <p className='text-2xl font-bold text-green-900 mb-10 ml-3'>Seller Panel</p>
-                                <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/addProduct">Add A Product</Link></li>
-                                <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/myProducts">My Product</Link></li>
-                            </>
-                            : <></>
-                        }
+                {
+                    user?.emailVerified ?
+                        <div className='drawer-side font-bold'>
+                            <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+                            <ul className="menu p-4 w-80  text-white">
+                            <li className='text-2xl font-bold text-green-900 mb-10 ml-3'>Buyer Profile</li>
+                            <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/myOrders">My Orders</Link></li>
+                            </ul>
+                        </div>
+                        :
+                        <div className="drawer-side font-bold">
+                            <label htmlFor="dashboard-drawer" className="drawer-overlay"></label>
+                            <ul className="menu p-4 w-80  text-white">
+                                {
+                                    role === "admin" ?
+                                        <>
+                                            <p className='text-2xl font-bold text-green-900 mb-10 ml-3'>Admin Panel</p>
+                                            <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/allSellers">All Seller</Link></li>
+                                            <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/allBuyers">All Buyers</Link></li>
+                                        </>
+                                        :
+                                        <></>
+                                }
+                                {
+                                    role === 'seller' ?
+                                        <>
+                                            <p className='text-2xl font-bold text-green-900 mb-10 ml-3'>Seller Panel</p>
+                                            <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/addProduct">Add A Product</Link></li>
+                                            <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/myProducts">My Product</Link></li>
+                                        </>
+                                        : <></>
+                                }
 
-                        {
-                        role === "buyer" ?
-                            <>
-                                <p className='text-2xl font-bold text-green-900 mb-10 ml-3'>Buyer Profile</p>
-                                <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/myOrders">My Orders</Link></li>
-                            </>
-                            :
-                            <></>
-                        }
-                    </ul>
-                </div>
+                                {
+                                    role === "buyer" ?
+                                        <>
+                                            <p className='text-2xl font-bold text-green-900 mb-10 ml-3'>Buyer Profile</p>
+                                            <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/myOrders">My Orders</Link></li>
+                                        </>
+                                        :
+                                        <></>
+                                }
+                            </ul>
+                        </div>
+                }
             </div>
 
         </div>

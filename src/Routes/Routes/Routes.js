@@ -16,7 +16,6 @@ import AllBuyers from "../../Pages/Dashboard/AllBuyers/AllBuyers";
 import AllSellers from "../../Pages/Dashboard/AllSellers/AllSellers";
 import Welcome from "../../Pages/Dashboard/Welcome/Welcome";
 
-
 const router = createBrowserRouter([
     {
         path: '/',

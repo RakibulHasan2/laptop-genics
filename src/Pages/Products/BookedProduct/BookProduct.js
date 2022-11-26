@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +7,7 @@ const BookProduct = ({ product, setProduct}) => {
     const { user } = useContext(AuthContext)
     const { name, resalePrice,image } = product;
     // console.log(name, resalePrice)
-  const navigate = useNavigate()
+    const navigate = useNavigate()
     const handleBooking = event => {
         event.preventDefault();
         const form = event.target;
@@ -38,7 +38,7 @@ const BookProduct = ({ product, setProduct}) => {
            if(data.acknowledged){
             setProduct([]);
             toast.success('booking successfully')
-            navigate('/dashboard')
+            navigate('/dashboard/myOrders')
            }else{
             toast.error(data.message)
            }

@@ -44,3 +44,11 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const analytics = getAnalytics(app);
 export default app;
+
+// apiKey: "AIzaSyAencW4-xicB8g1P_t3bpixP7ehM8XkYPw",
+// authDomain: "laptop-genics.firebaseapp.com",
+// projectId: "laptop-genics",
+// storageBucket: "laptop-genics.appspot.com",
+// messagingSenderId: "1047532568989",
+// appId: "1:1047532568989:web:0898cd8def068d59e46f74",
+// measurementId: "G-0S4FTJT117"
