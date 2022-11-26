@@ -23,7 +23,7 @@ const AllBuyers = () => {
                 .then(data => {
                     console.log(data)
                     if (data.deletedCount > 0) {
-                        toast.success('Buyer     Deleted Successfully')
+                        toast.success('Buyer Deleted Successfully')
                         const remaining = buyer.filter(sel => sel._id !== id)
                          deleteBuyer(remaining)
                         refetch()

@@ -1,6 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import './PaymentForm.css'
+import { toast } from 'react-hot-toast';
 const PaymentForm = ({ booking }) => {
     const stripe = useStripe()
     const elements = useElements()
@@ -86,6 +87,7 @@ const PaymentForm = ({ booking }) => {
                 .then(data => {
                     console.log(data);
                     if (data.insertedId) {
+                        toast.success('Thank You Payment')
                         setSuccess('Congrats! your payment completed');
                         setTransactionId(paymentIntent.id);
                     }

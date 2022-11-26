@@ -70,11 +70,8 @@ const Login = () => {
                 // console.log('save user',data)
                 setLoginUserEmail(email)
             })
-
     }
-    
 
-    
     return (
         <div className='lg:flex justify-center items-center'>
             <div>
