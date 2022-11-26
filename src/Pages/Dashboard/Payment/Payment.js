@@ -9,9 +9,9 @@ const Payment = () => {
     const {resalePrice,productName} = booking
     // console.log(booking)
     return (
-        <div>
+        <div className='ml-10'>
         <h3 className="text-3xl mb-5 font-bold">My Payments</h3>
-        <p className="text-xl">Please pay <strong>{resalePrice} Taka</strong> for the <strong>{productName}</strong> product</p>
+        <p className="text-3xl">Please pay <strong>{resalePrice} Taka</strong> for the <strong>{productName}</strong> product</p>
             <div className='w-96 my-6'>
                 <Elements stripe={stripePromise}>
                     <PaymentForm

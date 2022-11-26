@@ -1,6 +1,6 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
-
+import './PaymentForm.css'
 const PaymentForm = ({booking}) => {
     const stripe = useStripe()
     const elements = useElements()
@@ -97,8 +97,8 @@ const PaymentForm = ({booking}) => {
 
     
     return (
-        <div>
-        <form className='border' onSubmit={handleSubmit}>
+        <div className='payment-div'>
+        <form className='' onSubmit={handleSubmit}>
            <CardElement
                options={{
                    style: {
