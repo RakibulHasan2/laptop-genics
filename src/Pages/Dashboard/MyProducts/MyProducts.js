@@ -1,12 +1,14 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../../context/AuthProvider';
 
 const MyProducts = () => {
+    const [product, deleteProduct] = useState([])
     const { user } = useContext(AuthContext);
     const url = `http://localhost:5000/dashboard/products?email=${user?.email}`
 
-    const { data: products = [] } = useQuery({
+    const { data: products = [], refetch } = useQuery({
         queryKey: ['dashboard/items', user?.email],
         queryFn: async () => {
 
@@ -19,6 +21,25 @@ const MyProducts = () => {
             return data;
         }
     })
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Want To Delete, Think Again?')
+        if (proceed) {
+            fetch(` http://localhost:5000/dashboard/products/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Items Deleted Successfully')
+                        const remaining = product.filter(prod => prod._id !== id)
+                        deleteProduct(remaining)
+                        refetch()
+                    }
+                })
+        }
+    }
     return (
         <div>
             <div className='flex justify-center mb-5 mt-5'>
@@ -44,7 +65,7 @@ const MyProducts = () => {
                                     <th><img className="mask mask-circle h-24" src={product.image} alt="" /></th>
                                     <th>{product.name}</th>
                                     <th>{product.resalePrice}৳</th>
-                                    <th><button className='btn btn-danger'>remove</button></th>
+                                    <th><button onClick={() => handleDelete(product._id)} className='btn btn-danger'>remove</button></th>
                                 </tr>
                             )
                         }
