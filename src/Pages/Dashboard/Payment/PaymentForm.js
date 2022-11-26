@@ -1,7 +1,7 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
 import React, { useEffect, useState } from 'react';
 import './PaymentForm.css'
-const PaymentForm = ({booking}) => {
+const PaymentForm = ({ booking }) => {
     const stripe = useStripe()
     const elements = useElements()
     const [cardError, setCardError] = useState('');
@@ -9,7 +9,7 @@ const PaymentForm = ({booking}) => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState("");
-    const {resalePrice, email,buyer, _id } = booking;
+    const { resalePrice, email, buyer, _id } = booking;
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -26,30 +26,30 @@ const PaymentForm = ({booking}) => {
     }, [resalePrice]);
 
 
-    const handleSubmit = async(event) =>{
+    const handleSubmit = async (event) => {
         event.preventDefault()
-        if(!stripe || !elements){
+        if (!stripe || !elements) {
             return;
         }
         const card = elements.getElement(CardElement);
 
         if (card == null) {
             return;
-          }
-          const {error, paymentMethod} = await stripe.createPaymentMethod({
+        }
+        const { error, paymentMethod } = await stripe.createPaymentMethod({
             type: 'card',
             card,
-          });     
-          
-          if (error) {
+        });
+
+        if (error) {
             console.log(error);
             setCardError(error.message)
-          } else {
+        } else {
             setCardError('');
-          }
-          setSuccess('');
-          setProcessing(true);
-          const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
+        }
+        setSuccess('');
+        setProcessing(true);
+        const { paymentIntent, error: confirmError } = await stripe.confirmCardPayment(
             clientSecret,
             {
                 payment_method: {
@@ -95,41 +95,41 @@ const PaymentForm = ({booking}) => {
 
     }
 
-    
+
     return (
         <div className='payment-div'>
-        <form className='' onSubmit={handleSubmit}>
-           <CardElement
-               options={{
-                   style: {
-                       base: {
-                           fontSize: '16px',
-                           color: '#424770',
-                           '::placeholder': {
-                               color: '#aab7c4',
-                           },
-                       },
-                       invalid: {
-                           color: '#9e2146',
-                       },
-                   },
-               }}
-           />
-           <button
-               className='btn btn-sm mt-4 btn-primary'
-               type="submit"
-               disabled={!stripe || !clientSecret}>
-               Pay
-           </button>
-       </form>
-       <p className="text-red-500 mt-4">{cardError}</p> 
-        {
-           success && <div>
-               <p className='text-green-500 text-3xl font-bold'>{success}</p>
-               <p className='text-xl'>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
-           </div>
-       }
-   </div>   
+            <form className='' onSubmit={handleSubmit}>
+                <CardElement
+                    options={{
+                        style: {
+                            base: {
+                                fontSize: '16px',
+                                color: '#424770',
+                                '::placeholder': {
+                                    color: '#aab7c4',
+                                },
+                            },
+                            invalid: {
+                                color: '#9e2146',
+                            },
+                        },
+                    }}
+                />
+                <button
+                    className='btn btn-sm mt-4 btn-primary'
+                    type="submit"
+                    disabled={!stripe || !clientSecret}>
+                    Pay
+                </button>
+            </form>
+            <p className="text-red-500 mt-4">{cardError}</p>
+            {
+                success && <div>
+                    <p className='text-green-500 text-3xl font-bold'>{success}</p>
+                    <p className='text-xl'>Your transactionId: <span className='font-bold'>{transactionId}</span></p>
+                </div>
+            }
+        </div>
     );
 };
 

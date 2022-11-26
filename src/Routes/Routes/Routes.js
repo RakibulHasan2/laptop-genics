@@ -84,7 +84,7 @@ const router = createBrowserRouter([
                 element: <Payment></Payment>,
                 loader: ({params}) => fetch(`http://localhost:5000/bookedLaptop/${params.id}`)
             },
-          
+                
           
         ]
     }
