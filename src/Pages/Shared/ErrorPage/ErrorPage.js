@@ -6,7 +6,7 @@ const ErrorPage = () => {
     <section className='flex items-center h-screen p-16 bg-gray-100 text-gray-900'>
       <div className='container flex flex-col items-center justify-center px-5 mx-auto my-8'>
         <img className='h-80' src={errorPic} alt="" />
-        <p className='text-9xl font-semibold text-red-700 mb-8'>
+        <p className='text-9xl font-bold text-red-700 mb-8'>
           404 
         </p>
         <p className='text-2xl font-semibold md:text-3xl mb-8'>
