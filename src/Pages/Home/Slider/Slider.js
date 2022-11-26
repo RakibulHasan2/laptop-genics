@@ -13,7 +13,7 @@ const Slider = () => {
             <a href="#slide2" className="btn btn-circle">❮</a> 
             <div className="absolute flex justify-between transform -translate-y-1/2 right-40 top-1/2">
             <div>
-            <p className='text-5xl font-bold responsive-font'>Enjoy Your Life —<br /> I am Here to Save it! </p><p className='text-xl mt-4 mb-10 responsive-font'>I am available for 24/7 hours <br />I care for you — inside and out! Taking Care of You Since — Well, <br /> Beginning of Time!</p>
+            <p className='text-5xl font-bold responsive-font'>Sell/buy Your Products —<br /> I am Here to Save Your Money! </p><p className='text-xl mt-4 mb-10 responsive-font'>It is open source website.<br />I build for you — inside and out! Saving your time Since — Well, <br /> Beginning of Time!</p>
             </div>
            </div>
             <a href="#slide2" className="btn btn-circle">❯</a>
@@ -26,7 +26,7 @@ const Slider = () => {
             <a href="#slide1" className="btn btn-circle">❮</a> 
            <div className="absolute flex justify-between transform -translate-y-1/2 left-40 top-1/2">
            <div>
-            <p className='text-5xl font-bold responsive-font '>Enjoy Your Life —<br /> I am Here to Save it! </p><p className='text-xl mt-4 mb-10 responsive-font'>I am available for 24/7 hours <br />I care for you — inside and out! Taking Care of You Since — Well, <br /> Beginning of Time!</p>
+           <p className='text-5xl font-bold responsive-font'>Sell/buy Your Products —<br /> I am Here to Save Your Money! </p><p className='text-xl mt-4 mb-10 responsive-font'>It is open source website.<br />I build for you — inside and out! Saving your time Since — Well, <br /> Beginning of Time!</p>
             </div>
            </div>
             <a href="#slide1" className="btn btn-circle">❯</a>
