@@ -43,14 +43,14 @@ const MyProducts = () => {
     return (
         <div>
             <div className='flex justify-center mb-5 mt-5'>
-                <h1 className='text-3xl'>My Added Items </h1>
+                <h1 className='text-3xl font-bold'>My Products</h1>
             </div>
 
             <div className="overflow-x-auto">
                 <table className="table w-full">
-                    <thead>
+                    <thead >
                         <tr>
-                            <th></th>
+                            <th>SL</th>
                             <th>Product</th>
                             <th>Model Name</th>
                             <th>Price</th>
