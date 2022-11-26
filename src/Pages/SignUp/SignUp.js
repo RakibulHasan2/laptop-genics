@@ -98,7 +98,8 @@ const SignUp = () => {
                     <div className='mt-4'>
                         <label className="label"> <span className="label-text">Choose Your Role</span></label>
                         <select className="select select-bordered  w-full max-w-xs" {...register("role")}>
-                            <option value="buyer">buyer</option>
+                            <option selected value=""></option>
+                            <option  value="buyer">buyer</option>
                             <option value="seller">seller</option>
                         </select>
                     </div>
