@@ -1,13 +1,43 @@
+import { useQuery } from '@tanstack/react-query';
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 
 const AdminReport = () => {
-    const [reported, setReported] = useState([])
-    useEffect(() => {
-        axios.get('http://localhost:5000/reportAdmin')
-            .then(data => setReported(data.data))
-    }, [])
-    console.log(reported)
+    const [reported, deleteReported] = useState([])
+    // useEffect(() => {
+    //     axios.get('http://localhost:5000/reportAdmin')
+    //         .then(data => setReported(data.data))
+    // }, [])
+
+    const { data: reportedProduct = [], refetch } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await fetch('http://localhost:5000/reportAdmin');
+            const data = await res.json();
+            return data;
+        }
+    });
+    console.log(reportedProduct)
+
+    const handleDeleteReport = id =>{
+        const proceed = window.confirm('Want To Delete, Think Again?')
+        if (proceed) {
+            fetch(` http://localhost:5000/dashboard/adminReport/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Buyer Deleted Successfully')
+                        const remaining =reported.filter(sel => sel._id !== id)
+                         deleteReported(remaining)
+                         refetch()
+                    }
+                })
+        }
+    }
     return (
         <div>
              <h3 className="text-3xl mb-5 font-bold">Reported Product</h3>
@@ -21,12 +51,13 @@ const AdminReport = () => {
                             <th>Product Name</th>
                             <th>Price</th>
                             <th>Email</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                          reported?.length &&
-                          reported?.map((order, i) => <tr key={order._id}>
+                         reportedProduct?.length &&
+                         reportedProduct?.map((order, i) => <tr key={order._id}>
         
                                 <th>{i + 1}</th>
                                 <td>
@@ -39,6 +70,7 @@ const AdminReport = () => {
                                 <td>{order.productName}</td>
                                 <td>{order.resalePrice}</td>
                                 <td>{order.email}</td>
+                                <td><button onClick={() => handleDeleteReport(order._id)} className='btn btn-success'>Delete</button></td>
                             </tr>)
                         }
                     </tbody>
