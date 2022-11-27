@@ -53,6 +53,7 @@ const DashBoardLayout = () => {
                                             <p className='text-2xl font-bold text-green-900 mb-10 ml-3'>Admin Panel</p>
                                             <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/allSellers">All Seller</Link></li>
                                             <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/allBuyers">All Buyers</Link></li>
+                                            <li className='rounded-lg  hover:bg-sky-700  bg-slate-400 mb-2'><Link to="/dashboard/adminReport">Reported Product</Link></li>
                                         </>
                                         :
                                         <></>

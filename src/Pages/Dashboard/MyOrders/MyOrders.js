@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
+import toast from 'react-hot-toast';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
@@ -18,6 +19,40 @@ const MyOrders = () => {
             return data;
         }
     })
+// console.log("order", orders)
+    const handleAdminReport = id =>{
+        const proceed = window.confirm('Want To Report this product?')
+        const reportProduct = orders.filter(prod => prod._id === id)
+        const report = reportProduct[0]
+        // console.log('report ', report)
+        if(proceed){
+            const reportProduct = {
+                buyer: report.buyer,
+                email: report.email,
+                image: report.image,
+                resalePrice: report.resalePrice,
+                productName: report.productName
+            }
+            fetch('http://localhost:5000/reportAdmin', {
+                method: 'POST',
+                headers: {
+                    'content-type': 'application/json',
+                    authorization: `bearer ${localStorage.getItem('usersToken')}`
+
+                },
+                body: JSON.stringify(reportProduct)
+            })
+                .then(res => res.json())
+                .then(result => {
+                    if (result.acknowledged) {
+                        toast.success('Advertise successfully')
+                    }
+                    else {
+                        toast.error(result.message)
+                    }
+                })
+        }
+    }
 //  console.log(orders)
     return (
         <div>
@@ -30,6 +65,7 @@ const MyOrders = () => {
                             <th>Image</th>
                             <th>Name</th>
                             <th>Price</th>
+                            <th>Admin Report</th>
                             <th>Payment</th>
                         </tr>
                     </thead>
@@ -47,6 +83,7 @@ const MyOrders = () => {
                                     </div></td>
                                 <td>{order.productName}</td>
                                 <td>{order.resalePrice}</td>
+                                <td><button onClick={() => handleAdminReport(order._id)} className='btn btn-success'>Report To Admin</button></td>
                                 <td>
                                     {
                                         order.resalePrice && !order?.paid && <Link to={`/dashboard/payment/${order._id}`}>

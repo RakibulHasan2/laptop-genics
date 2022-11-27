@@ -5,27 +5,28 @@ import AdvertisedCard from './AdvertisedCard';
 const Advertise = () => {
 
     const [advertised, setAdvertised] = useState([])
-    useEffect(() =>{
+    useEffect(() => {
         axios.get('http://localhost:5000/advertise')
-        .then(data => setAdvertised(data.data))
-    } ,[])
+            .then(data => setAdvertised(data.data))
+    }, [])
     // console.log(advertised)
 
+   if(advertised.length !== 0){
     return (
-        <div>
-            <h1 className='text-4xl font-bold text-center'>Advertised Products are Here</h1>
+        <>
+            <h1 className='text-4xl font-bold text-center mb-8'>Advertised {advertised.length} Products are Here</h1>
             <div className='lg:grid grid-cols-3 lg:ml-10'>
-               {
-                advertised.map(advertise => <AdvertisedCard
+                {
+                    advertised.map(advertise => <AdvertisedCard
                         key={advertise._id}
                         advertise={advertise}
                     >
                     </AdvertisedCard>)
                 }
-
             </div>
-        </div>
+        </>
     );
+   }
 };
 
 export default Advertise;

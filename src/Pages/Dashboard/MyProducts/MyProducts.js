@@ -23,7 +23,7 @@ const MyProducts = () => {
             return data;
         }
     })
-// console.log(products)
+    // console.log(products)
     const handleDelete = id => {
         const proceed = window.confirm('Want To Delete, Think Again?')
         if (proceed) {
@@ -42,26 +42,26 @@ const MyProducts = () => {
                 })
         }
     }
-    const  handleAdvertise = id => {
+    const handleAdvertise = id => {
 
         const advertiseProduct = products.filter(prod => prod._id === id)
         const advertise = advertiseProduct[0]
-        console.log(advertise)
+        // console.log(advertise)
         const proceed = window.confirm('Want To Advertise this product?')
-        if(proceed){
+        if (proceed) {
             const advertiseProduct = {
-               category_id:advertise.category_id,  
-               product_id: advertise._id,   
-               name: advertise.name,
-               email: advertise.email,
-               details: advertise.details,
-               image: advertise.image,
-               location: advertise.location,
-               originalPrice: advertise.originalPrice,
-               resalePrice: advertise.resalePrice,
-               sellerName: advertise.sellerName, 
-               used: advertise.yearOfUse,
-               postTime: advertise.postTime               
+                category_id: advertise.category_id,
+                product_id: advertise._id,
+                name: advertise.name,
+                email: advertise.email,
+                details: advertise.details,
+                image: advertise.image,
+                location: advertise.location,
+                originalPrice: advertise.originalPrice,
+                resalePrice: advertise.resalePrice,
+                sellerName: advertise.sellerName,
+                used: advertise.yearOfUse,
+                postTime: advertise.postTime
             }
             fetch('http://localhost:5000/advertise', {
                 method: 'POST',
@@ -74,10 +74,15 @@ const MyProducts = () => {
             })
                 .then(res => res.json())
                 .then(result => {
-                    console.log(result)
-                    toast.success('Advertised Successfully')
-                    navigate('/')
+                    if (result.acknowledged) {
+                        toast.success('Advertise successfully')
+                        navigate('/')
+                    }
+                    else {
+                        toast.error(result.message)
+                    }
                 })
+
         }
     }
     return (
