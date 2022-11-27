@@ -48,6 +48,7 @@ const MyOrders = () => {
                     if (result.acknowledged) {
                         
                         toast.success('Reported successfully')
+                        window.location.reload();
                         
                     }
                     else {
