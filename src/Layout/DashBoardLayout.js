@@ -1,14 +1,16 @@
 import { useQuery } from '@tanstack/react-query';
-import React, { useContext } from 'react';
+import axios from 'axios';
+import React, { useContext} from 'react';
 import { Outlet, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthProvider';
 import Navbar from '../Pages/Shared/Navbar/Navbar';
 
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext)
-    const url = `http://localhost:5000/users?email=${user?.email}`
 
-    const { data: userRole = {}, refetch } = useQuery({
+    const url = `http://localhost:5000/users?email=${user?.email}`
+     
+    const { data: userRole = [], refetch } = useQuery({
         queryKey: ['users', user?.email],
         queryFn: async () => {
 
@@ -21,6 +23,7 @@ const DashBoardLayout = () => {
             return data;
         }
     })
+
     const role = userRole[0]?.role
     // console.log(role)
     return (
