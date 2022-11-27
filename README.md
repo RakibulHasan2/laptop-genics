@@ -1,5 +1,8 @@
 ### Website Link : https://laptop-genics.web.app/
 
+###  adminEmail: rak123@gmail.com
+###  adminPassword: Rak123!
+
 ## Features:
 - In my website there is login, signin option with emai, google.
 - There are login option for buyer and seller
