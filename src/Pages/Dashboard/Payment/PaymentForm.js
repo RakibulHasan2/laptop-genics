@@ -10,7 +10,7 @@ const PaymentForm = ({ booking }) => {
     const [processing, setProcessing] = useState(false);
     const [transactionId, setTransactionId] = useState('');
     const [clientSecret, setClientSecret] = useState("");
-    const { resalePrice, email, buyer, _id } = booking;
+    const { resalePrice, email, buyer, _id, productName} = booking;
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
@@ -70,6 +70,8 @@ const PaymentForm = ({ booking }) => {
             console.log('card info', card);
             // store payment info in the database
             const payment = {
+                name: productName,                
+                paid: true,
                 resalePrice,
                 transactionId: paymentIntent.id,
                 email,

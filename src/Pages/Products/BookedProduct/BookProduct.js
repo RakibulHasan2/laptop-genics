@@ -39,7 +39,8 @@ const BookProduct = ({ product, setProduct}) => {
             setProduct([]);
             toast.success('booking successfully')
             navigate('/dashboard/myOrders')
-           }else{
+           }
+           else{
             toast.error(data.message)
            }
          })

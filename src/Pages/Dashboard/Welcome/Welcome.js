@@ -28,7 +28,7 @@ const Welcome = () => {
         <div className='lg:flex justify-center items-center'>
             <img className='welcomePic' src={welcomePic} alt="" />
             <div>
-                <h1 className='text-3xl font-bold ml-3'>Welcome <span className='text-blue-800 text-4xl'>{user.displayName} </span>  <br /> To Our <br /> Dashboard Panel <br /> as <span className='text-blue-800 text-4xl'>{role}</span>. Thank You </h1>
+                <h1 className='text-3xl font-bold ml-3'>Welcome <span className='text-blue-800 text-4xl'>{user.displayName} </span>  <br /> To Our <br /> Dashboard Panel <br /> as <span className='text-blue-800 text-4xl'>{role || 'buyer'}</span>. Thank You </h1>
             </div>
             <img className='welcomePic' src={welcome} alt="" />
         </div>
