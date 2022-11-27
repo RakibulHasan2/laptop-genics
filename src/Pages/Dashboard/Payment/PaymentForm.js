@@ -14,7 +14,7 @@ const PaymentForm = ({ booking }) => {
 
     useEffect(() => {
         // Create PaymentIntent as soon as the page loads
-        fetch("http://localhost:5000/create-payment-intent", {
+        fetch("https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/create-payment-intent", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -77,7 +77,7 @@ const PaymentForm = ({ booking }) => {
                 email,
                 bookingId: _id
             }
-            fetch('http://localhost:5000/payments', {
+            fetch('https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/payments', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',

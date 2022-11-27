@@ -25,7 +25,7 @@ const BookProduct = ({ product, setProduct}) => {
             image
         }
         console.log(buyer)
-        fetch('http://localhost:5000/bookedLaptop', {
+        fetch('https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/bookedLaptop', {
             method: 'POST',
              headers: {
                 'content-type' : 'application/json'

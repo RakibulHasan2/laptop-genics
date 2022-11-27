@@ -8,7 +8,7 @@ import Navbar from '../Pages/Shared/Navbar/Navbar';
 const DashBoardLayout = () => {
     const { user } = useContext(AuthContext)
 
-    const url = `http://localhost:5000/users?email=${user?.email}`
+    const url = `https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/users?email=${user?.email}`
      
     const { data: userRole = [], refetch } = useQuery({
         queryKey: ['users', user?.email],

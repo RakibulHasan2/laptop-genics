@@ -39,7 +39,7 @@ const AddProduct = () => {
                         mobileNumber: data.mobileNumber,
                         email: user?.email
                     }
-                    fetch('http://localhost:5000/products', {
+                    fetch('https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/products', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json',

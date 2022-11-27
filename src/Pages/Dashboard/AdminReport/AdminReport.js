@@ -1,19 +1,13 @@
 import { useQuery } from '@tanstack/react-query';
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import toast from 'react-hot-toast';
 
 const AdminReport = () => {
     const [reported, deleteReported] = useState([])
-    // useEffect(() => {
-    //     axios.get('http://localhost:5000/reportAdmin')
-    //         .then(data => setReported(data.data))
-    // }, [])
-
     const { data: reportedProduct = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/reportAdmin');
+            const res = await fetch('https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/reportAdmin');
             const data = await res.json();
             return data;
         }
@@ -23,7 +17,7 @@ const AdminReport = () => {
     const handleDeleteReport = id =>{
         const proceed = window.confirm('Want To Delete, Think Again?')
         if (proceed) {
-            fetch(` http://localhost:5000/dashboard/adminReport/${id}`, {
+            fetch(` https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/dashboard/adminReport/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

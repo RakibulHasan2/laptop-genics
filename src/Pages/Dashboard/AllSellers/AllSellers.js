@@ -7,7 +7,7 @@ const AllSellers = () => {
     const { data: users = [], refetch } = useQuery({
         queryKey: ['users'],
         queryFn: async () => {
-            const res = await fetch('http://localhost:5000/users/allSellers');
+            const res = await fetch('https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/users/allSellers');
             const data = await res.json();
             return data;
         }
@@ -15,7 +15,7 @@ const AllSellers = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Want To Delete, Think Again?')
         if (proceed) {
-            fetch(` http://localhost:5000/dashboard/allSellers/${id}`, {
+            fetch(` https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/dashboard/allSellers/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

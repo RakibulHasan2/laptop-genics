@@ -46,7 +46,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/products/:id',
-                loader: async({params}) =>await fetch(`http://localhost:5000/products/${params.id}`),
+                loader: async({params}) =>await fetch(`https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/products/${params.id}`),
                 element: <PrivateRoute><Products></Products></PrivateRoute>
             },
         ]
@@ -87,7 +87,7 @@ const router = createBrowserRouter([
             {
                 path:'/dashboard/payment/:id',
                 element: <Payment></Payment>,
-                loader: ({params}) => fetch(`http://localhost:5000/bookedLaptop/${params.id}`)
+                loader: ({params}) => fetch(`https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/bookedLaptop/${params.id}`)
             },
                 
           

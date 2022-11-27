@@ -3,10 +3,11 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../context/AuthProvider';
 import { useQuery } from '@tanstack/react-query';
 import toast from 'react-hot-toast';
+import Loading from './../../Shared/Loading/Loading';
 
 const MyOrders = () => {
     const { user } = useContext(AuthContext);
-    const url = `http://localhost:5000/bookedLaptop?email=${user?.email}`;
+    const url = `https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/bookedLaptop?email=${user?.email}`;
     const { data: orders = [] } = useQuery({
         queryKey: ['bookings', user?.email],
         queryFn: async () => {
@@ -33,7 +34,7 @@ const MyOrders = () => {
                 resalePrice: report.resalePrice,
                 productName: report.productName
             }
-            fetch('http://localhost:5000/reportAdmin', {
+            fetch('https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/reportAdmin', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -45,7 +46,9 @@ const MyOrders = () => {
                 .then(res => res.json())
                 .then(result => {
                     if (result.acknowledged) {
-                        toast.success('Advertise successfully')
+                        
+                        toast.success('Reported successfully')
+                        
                     }
                     else {
                         toast.error(result.message)
@@ -83,7 +86,10 @@ const MyOrders = () => {
                                     </div></td>
                                 <td>{order.productName}</td>
                                 <td>{order.resalePrice}</td>
-                                <td><button onClick={() => handleAdminReport(order._id)} className='btn btn-success'>Report To Admin</button></td>
+                                <td><button disabled={sessionStorage.getItem(`buttonDisable${order._id}` || false)}  onClick={() => {
+                                    handleAdminReport(order._id)
+                                    sessionStorage.setItem(`buttonDisable${order._id}`, true);
+                                }} className='btn btn-success'>Report To Admin</button></td>
                                 <td>
                                     {
                                         order.resalePrice && !order?.paid && <Link to={`/dashboard/payment/${order._id}`}>

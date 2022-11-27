@@ -6,9 +6,11 @@ import { AuthContext } from '../../../context/AuthProvider';
 
 const MyProducts = () => {
     const [product, deleteProduct] = useState([])
+    // const [enable, disable] = useState(sessionStorage.getItem('button-disable') || false)
+
     const { user } = useContext(AuthContext);
     const navigate = useNavigate()
-    const url = `http://localhost:5000/dashboard/products?email=${user?.email}`
+    const url = `https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/dashboard/products?email=${user?.email}`
 
     const { data: products = [], refetch } = useQuery({
         queryKey: ['dashboard/items', user?.email],
@@ -27,7 +29,7 @@ const MyProducts = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Want To Delete, Think Again?')
         if (proceed) {
-            fetch(` http://localhost:5000/dashboard/products/${id}`, {
+            fetch(` https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/dashboard/products/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -43,7 +45,6 @@ const MyProducts = () => {
         }
     }
     const handleAdvertise = id => {
-
         const advertiseProduct = products.filter(prod => prod._id === id)
         const advertise = advertiseProduct[0]
         // console.log(advertise)
@@ -63,7 +64,7 @@ const MyProducts = () => {
                 used: advertise.yearOfUse,
                 postTime: advertise.postTime
             }
-            fetch('http://localhost:5000/advertise', {
+            fetch('https://b612-used-products-resale-server-side-rakibul-hasan2-main.vercel.app/advertise', {
                 method: 'POST',
                 headers: {
                     'content-type': 'application/json',
@@ -76,7 +77,7 @@ const MyProducts = () => {
                 .then(result => {
                     if (result.acknowledged) {
                         toast.success('Advertise successfully')
-                        navigate('/')
+                        navigate('/');
                     }
                     else {
                         toast.error(result.message)
@@ -111,7 +112,10 @@ const MyProducts = () => {
                                     <th><img className="mask mask-circle h-24" src={product.image} alt="" /></th>
                                     <th>{product.name}</th>
                                     <th>{product.resalePrice}৳</th>
-                                    <th><button onClick={() => handleAdvertise(product._id)} className='btn btn-success'>Advertise</button></th>
+                                    <th><button disabled={sessionStorage.getItem(`buttonDisable${product._id}` || false)} onClick={() => {
+                                        handleAdvertise(product._id)
+                                        sessionStorage.setItem(`buttonDisable${product._id}`, true);
+                                    }} className='btn btn-success'>Advertise</button></th>
                                     <th><button onClick={() => handleDelete(product._id)} className='btn btn-primary'>remove</button></th>
                                 </tr>
                             )
