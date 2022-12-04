@@ -11,22 +11,22 @@ const Advertise = () => {
     }, [])
     // console.log(advertised)
 
-   if(advertised.length !== 0){
-    return (
-        <>
-            <h1 className='text-4xl font-bold text-center mb-8'>Advertised {advertised.length} Products are Here</h1>
-            <div className='lg:grid grid-cols-3 lg:ml-10'>
-                {
-                    advertised.map(advertise => <AdvertisedCard
-                        key={advertise._id}
-                        advertise={advertise}
-                    >
-                    </AdvertisedCard>)
-                }
-            </div>
-        </>
-    );
-   }
+    if (advertised.length !== 0) {
+        return (
+            <>
+                <h1 className='text-4xl font-bold text-center mb-8'>Advertised {advertised.length} Products are Here</h1>
+                <div className='lg:grid grid-cols-3 lg:ml-10'>
+                    {
+                        advertised.map(advertise => <AdvertisedCard
+                            key={advertise._id}
+                            advertise={advertise}
+                        >
+                        </AdvertisedCard>)
+                    }
+                </div>
+            </>
+        );
+    }
 };
 
 export default Advertise;
